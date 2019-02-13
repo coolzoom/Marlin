@@ -3435,7 +3435,16 @@ inline void gcode_G0_G1(
     #if IS_SCARA
       fast_move ? prepare_uninterpolated_move_to_destination() : prepare_move_to_destination();
     #else
+      //prepare_move_to_destination();
+
+      //new added report current location during move
+      stepper.synchronize();
       prepare_move_to_destination();
+
+      stepper.synchronize();
+      report_current_position();
+
+      //end of add
     #endif
 
     #if ENABLED(NANODLP_Z_SYNC)
