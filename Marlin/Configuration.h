@@ -1299,6 +1299,39 @@
  * Default Axis Steps Per Unit (linear=steps/mm, rotational=steps/°)
  * Override with M92 (when enabled below)
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
+
+  For a 0.9 degree stepper this would be 360°/0.9°, or 400 full steps.  
+ But wait!  We also have to factor in microstepping - 
+ this is usually done in 1/8 or 1/16 increments (Pololu drivers are 1/16th).  
+
+So 400 full steps divided by 1/16 microstepping would be 6400, 
+which represents the number of microsteps it takes for the motor to make a full revolution.  
+A 1.8 degree motor at 1/16th microstepping would take 3200 microsteps to make a full revolution.
+
+Putting it all Together
+For a 0.9 degree motor using 1/16th microstepping with a 5mm pitch belt and a 8 tooth gear, 
+the steps per unit would be:  6400 steps per revolution, divided by 5, 
+divided by 8, or 160 steps per unit (in this case millimeters).
+
+对于 0.9° 步进电机，计算方式为 360° ÷ 0.9°，即 400 个完整步距。
+
+但等等！我们还必须考虑微步驱动——通常采用 1/8 或 1/16 细分（Pololu 驱动板的细分率是 1/16）。
+
+因此，400 个完整步距再除以 1/16 的细分，即 6400 微步，这就是电机完成一整圈所需的微步数。
+若是 1.8° 电机在 1/16 细分下，则需要 3200 微步才能转一整圈。
+
+综合计算
+对于使用 1/16 细分 的 0.9° 电机，配合 5 mm 齿形带（即每转一圈移动 5 mm）和 8 齿齿轮：
+
+每转一圈的微步数：6400 步
+再除以带距（5 mm）：6400 ÷ 5 = 1280 步/mm
+再除以齿轮齿数（8）：1280 ÷ 8 = 160 步/单位（本例中单位为毫米）
+所以，每毫米移动需要 160 步（即 160 微步）。
+ */
+ //xy, defect mark
+ //X 
+ //Y 
+ //Z dual motor
  */
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 500 }
 
