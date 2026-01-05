@@ -1327,7 +1327,7 @@ divided by 8, or 160 steps per unit (in this case millimeters).
 再除以带距（5 mm）：6400 ÷ 5 = 1280 步/mm
 再除以齿轮齿数（8）：1280 ÷ 8 = 160 步/单位（本例中单位为毫米）
 所以，每毫米移动需要 160 步（即 160 微步）。
- */
+
  //xy, defect mark
  //X 
  //Y 
